@@ -8,11 +8,16 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-daysOfWeek=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+//daysOfWeek=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
 app.get("/", function (req, res) {
   var today = new Date();
-  var day = daysOfWeek[today.getDay()];
+  var options={
+      weekday:"long",
+      day:"numeric",
+      month:"long"
+  };
+  var day = today.toLocaleDateString("en-US",options); //daysOfWeek[today.getDay()];
   /*
   if (today.getDay() === 6 || today.getDay() === 0) {
     day = "Weekend";
