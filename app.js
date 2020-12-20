@@ -8,11 +8,11 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-let items = ["Buy Food", "Cook Food", "Eat Food"];
-let workItems = [];
+const items = ["Buy Food", "Cook Food", "Eat Food"]; //only append, don't change to another obj
+const workItems = [];
 
 app.get("/", function (req, res) {
-  let day = date();
+  const day = date.getDate();
 
   res.render("list", { listTitle: day, newListItems: items });
 });
@@ -26,7 +26,7 @@ app.get("/about", function (req, res) {
 });
 
 app.post("/", function (req, res) {
-  let item = req.body.newItem;
+  const item = req.body.newItem;
 
   if (req.body.list === "Work") {
     workItems.push(item);
