@@ -1,3 +1,4 @@
+//Anonymous function to get the date in Day,## Month format
 exports.getDate = function () {
   const today = new Date();
   const options = {
@@ -8,6 +9,7 @@ exports.getDate = function () {
   return today.toLocaleDateString("en-US", options);
 };
 
+//Anonymous function to get the day of the week only
 exports.getDay = function () {
   const today = new Date();
   const options = {
