@@ -8,34 +8,23 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-//daysOfWeek=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-var items = ["Buy Food","Cook Food","Eat Food"];
+let items = ["Buy Food","Cook Food","Eat Food"];
 
 app.get("/", function (req, res) {
-  var today = new Date();
-  var options = {
+  let today = new Date();
+  let options = {
     weekday: "long",
     day: "numeric",
     month: "long",
   };
-  var day = today.toLocaleDateString("en-US", options); //daysOfWeek[today.getDay()];
-  /*
-  if (today.getDay() === 6 || today.getDay() === 0) {
-    day = "Weekend";
-    //res.send("Yay it's the weekend!");
-  } else {
-    day = "Weekday";
-    //res.write("<p>Nay it's the work week!</p>");
-    //res.write("<h1>another line</h1>")
-    //res.sendFile(__dirname+"/index.html");
-  }
-  */
+  let day = today.toLocaleDateString("en-US", options); 
+  
   res.render("list", { kindOfDay: day, newListItems: items });
   
 });
 
 app.post("/", function (req, res) {
-  var item = req.body.newItem;
+  let item = req.body.newItem;
   items.push(item);
   res.redirect("/");
 });
